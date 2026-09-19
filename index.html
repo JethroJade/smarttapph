@@ -719,42 +719,27 @@ a{
     font-weight:700;
 }
 
-form{
-    padding:35px;
+
+/* GOOGLE FORM BUTTON */
+
+.order-box{
+    padding:40px;
     border-radius:25px;
     background:white;
     border:1px solid #e5e7eb;
     box-shadow:0 20px 60px rgba(15,23,42,.08);
 }
 
-label{
-    display:block;
-    color:#374151;
-    font-size:12px;
-    font-weight:800;
-    margin-bottom:17px;
+.order-box h3{
+    font-size:27px;
+    margin-bottom:10px;
 }
 
-input,
-select{
-    width:100%;
-    display:block;
-    margin-top:7px;
-    padding:14px;
-    border:1px solid #dbe1ea;
-    border-radius:11px;
-    background:#f8fafc;
-    font:inherit;
-    outline:none;
+.order-box p{
+    margin-bottom:25px;
 }
 
-input:focus,
-select:focus{
-    border-color:#6366f1;
-    background:white;
-}
-
-form button{
+.order-box .button{
     width:100%;
 }
 
@@ -1008,14 +993,13 @@ footer{
         border-radius:25px;
     }
 
-    form{
-        padding:23px;
+    .order-box{
+        padding:25px;
     }
 }
 
 </style>
 </head>
-
 
 <body>
 
@@ -1438,8 +1422,7 @@ footer{
         </h2>
 
         <p>
-            Sample prices for now. You can change these
-            to your actual packages later.
+            Choose the package that fits your needs.
         </p>
 
     </div>
@@ -1580,8 +1563,9 @@ footer{
         </h2>
 
         <p>
-            Enter your details and continue your
-            order through Messenger.
+            Ready to get your SmartTap card?
+            Fill out our quick order form and
+            we'll receive your details.
         </p>
 
         <div class="order-list">
@@ -1597,84 +1581,33 @@ footer{
     </div>
 
 
-    <form id="orderForm">
+    <div class="order-box">
 
-        <label>
+        <h3>
+            Start Your Order
+        </h3>
 
-            Your Name
+        <p>
+            Click the button below to open the
+            SmartTap PH order form.
+        </p>
 
-            <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                required>
-
-        </label>
-
-
-        <label>
-
-            Business / Brand
-
-            <input
-                type="text"
-                id="business"
-                placeholder="Your business name"
-                required>
-
-        </label>
-
-
-        <label>
-
-            Contact Number
-
-            <input
-                type="tel"
-                id="contact"
-                placeholder="09XXXXXXXXX"
-                required>
-
-        </label>
-
-
-        <label>
-
-            Package
-
-            <select id="package" required>
-
-                <option value="">
-                    Select package
-                </option>
-
-                <option value="SmartTap Card - ₱499">
-                    SmartTap Card - ₱499
-                </option>
-
-                <option value="SmartTap Pro - ₱799">
-                    SmartTap Pro - ₱799
-                </option>
-
-            </select>
-
-        </label>
-
-
-        <button
-            type="submit"
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfaPZ8snf5fuifPsEUrcxR3fHSj2A5AzZ9SjS0IvzdvNhW_Xw/viewform?usp=publish-editor"
+            target="_blank"
+            rel="noopener"
             class="button primary">
 
-            Send Order
+            Fill Out Order Form
 
-        </button>
-
+        </a>
 
         <small class="form-note">
-            You will be redirected to Messenger.
+            Your order information will be submitted
+            through Google Forms.
         </small>
 
-    </form>
+    </div>
 
 </section>
 
@@ -1860,74 +1793,7 @@ document
 
 });
 
-
-/* ORDER FORM */
-
-document
-.getElementById("orderForm")
-.addEventListener("submit",function(event){
-
-    event.preventDefault();
-
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const business =
-        document.getElementById("business").value.trim();
-
-    const contact =
-        document.getElementById("contact").value.trim();
-
-    const packageChoice =
-        document.getElementById("package").value;
-
-
-    /*
-       IMPORTANT:
-
-       Replace YOUR_PAGE_USERNAME
-       with your actual Facebook Page username.
-    */
-
-    const messengerUsername =
-        "YOUR_PAGE_USERNAME";
-
-
-    const message =
-        "Hello SmartTap PH! I want to order a card.%0A%0A" +
-
-        "Name: " +
-        encodeURIComponent(name) +
-
-        "%0A" +
-
-        "Business: " +
-        encodeURIComponent(business) +
-
-        "%0A" +
-
-        "Contact: " +
-        encodeURIComponent(contact) +
-
-        "%0A" +
-
-        "Package: " +
-        encodeURIComponent(packageChoice);
-
-
-    const url =
-        "https://m.me/" +
-        messengerUsername +
-        "?text=" +
-        message;
-
-
-    window.open(url,"_blank");
-
-});
-
 </script>
 
 </body>
-</html>
+   </html>
