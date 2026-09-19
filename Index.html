@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SmartTap PH | 1 Tap. Connect. Grow.</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f7f9ff;
+    color:#111827;
+    line-height:1.6;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.navbar{
+    height:75px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid #e5e7eb;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+    color:#111827;
+    letter-spacing:-1px;
+}
+
+.logo span{
+    color:#2563eb;
+}
+
+.navigation{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.navigation a{
+    color:#475569;
+    font-size:14px;
+    font-weight:700;
+}
+
+.navigation a:hover{
+    color:#2563eb;
+}
+
+.nav-button{
+    color:white!important;
+    padding:11px 19px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+}
+
+.menu-button{
+    display:none;
+    border:none;
+    background:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:700px;
+    padding:85px 8%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+    gap:45px;
+
+    background:
+    radial-gradient(circle at 10% 20%,rgba(37,99,235,.15),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(124,58,237,.17),transparent 35%),
+    linear-gradient(135deg,#f8fbff,#eef3ff);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:9px 15px;
+    border-radius:50px;
+    background:white;
+    border:1px solid #dbeafe;
+    color:#2563eb;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1.5px;
+    margin-bottom:22px;
+    box-shadow:0 10px 30px rgba(37,99,235,.08);
+}
+
+.badge-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#22c55e;
+}
+
+.hero h1{
+    font-size:clamp(52px,7vw,88px);
+    line-height:.95;
+    letter-spacing:-5px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    display:block;
+    background:linear-gradient(90deg,#2563eb,#7c3aed,#06b6d4);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero-text{
+    max-width:590px;
+    color:#64748b;
+    font-size:18px;
+    margin-bottom:30px;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.button{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
+    padding:15px 23px;
+    border-radius:13px;
+    font-size:14px;
+    font-weight:800;
+    transition:.25s;
+    border:none;
+    cursor:pointer;
+}
+
+.button:hover{
+    transform:translateY(-3px);
+}
+
+.primary{
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow:0 12px 30px rgba(79,70,229,.28);
+}
+
+.secondary{
+    color:#1e293b;
+    background:white;
+    border:1px solid #e2e8f0;
+}
+
+.checks{
+    display:flex;
+    flex-wrap:wrap;
+    gap:17px;
+    margin-top:24px;
+    color:#64748b;
+    font-size:12px;
+    font-weight:700;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card-area{
+    min-height:470px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.glow{
+    position:absolute;
+    width:390px;
+    height:390px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(37,99,235,.25),rgba(124,58,237,.08),transparent 70%);
+}
+
+.nfc-card{
+    width:min(420px,90%);
+    aspect-ratio:1.586;
+    padding:30px;
+    position:relative;
+    z-index:5;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    overflow:hidden;
+    border-radius:27px;
+    color:white;
+
+    background:
+    linear-gradient(135deg,#0f172a,#1d4ed8 45%,#7c3aed);
+
+    box-shadow:0 35px 80px rgba(15,23,42,.35);
+    transform:rotate(5deg);
+    transition:.4s;
+}
+
+.nfc-card:hover{
+    transform:rotate(0deg) translateY(-8px);
+}
+
+.nfc-card:before{
+    content:"";
+    position:absolute;
+    width:210px;
+    height:210px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    top:-100px;
+    right:-50px;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+    z-index:2;
+}
+
+.card-top strong{
+    letter-spacing:3px;
+    font-size:14px;
+}
+
+.card-middle{
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.waves{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-8px;
+}
+
+.card-middle small{
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+.card-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    position:relative;
+    z-index:2;
+}
+
+.card-bottom strong{
+    font-size:15px;
+}
+
+.card-bottom small{
+    display:block;
+    font-size:10px;
+    opacity:.7;
+}
+
+.chip{
+    width:47px;
+    height:35px;
+    border-radius:8px;
+    background:linear-gradient(135deg,#fff,#94a3b8);
+}
+
+.floating{
+    position:absolute;
+    z-index:10;
+    background:white;
+    padding:8px 13px;
+    border-radius:50px;
+    color:#2563eb;
+    font-size:10px;
+    font-weight:900;
+    box-shadow:0 15px 35px rgba(15,23,42,.15);
+    animation:float 3s ease-in-out infinite;
+}
+
+.floating.one{
+    top:65px;
+    left:5%;
+}
+
+.floating.two{
+    bottom:65px;
+    right:5%;
+    color:#7c3aed;
+    animation-delay:1s;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-10px)}
+}
+
+
+/* =========================
+   PROCESS
+========================= */
+
+.process{
+    min-height:115px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:35px;
+    background:#0f172a;
+    color:white;
+}
+
+.process-item{
+    display:flex;
+    flex-direction:column;
+}
+
+.process-item strong{
+    font-size:25px;
+    color:#60a5fa;
+}
+
+.process-item span{
+    color:#cbd5e1;
+    font-size:12px;
+    font-weight:700;
+}
+
+.line{
+    width:55px;
+    height:1px;
+    background:#334155;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    max-width:1250px;
+    margin:auto;
+    padding:100px 8%;
+}
+
+.label{
+    color:#2563eb;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin-bottom:15px;
+}
+
+.heading{
+    max-width:700px;
+    margin-bottom:45px;
+}
+
+.heading h2,
+.intro h2,
+.order h2,
+.cta h2{
+    font-size:clamp(38px,5vw,60px);
+    line-height:1;
+    letter-spacing:-3px;
+    margin-bottom:20px;
+}
+
+.heading p,
+.intro p,
+.order p{
+    color:#64748b;
+    max-width:650px;
+}
+
+.intro{
+    text-align:center;
+}
+
+.intro h2{
+    max-width:750px;
+    margin:0 auto 20px;
+}
+
+.intro p{
+    margin:auto;
+}
+
+
+/* =========================
+   STEPS
+========================= */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.step{
+    min-height:310px;
+    padding:32px;
+    border-radius:23px;
+    background:white;
+    border:1px solid #e5e7eb;
+    transition:.3s;
+}
+
+.step:hover{
+    transform:translateY(-7px);
+    box-shadow:0 25px 50px rgba(37,99,235,.1);
+}
+
+.step:nth-child(2){
+    background:linear-gradient(145deg,#eff6ff,#f5f3ff);
+    border-color:#c7d2fe;
+}
+
+.number{
+    color:#94a3b8;
+    font-size:12px;
+    font-weight:900;
+}
+
+.step-tag{
+    display:inline-block;
+    margin-top:35px;
+    padding:9px 13px;
+    border-radius:9px;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    font-size:9px;
+    font-weight:900;
+}
+
+.step h3{
+    margin:18px 0 9px;
+    font-size:22px;
+}
+
+.step p{
+    color:#64748b;
+    font-size:14px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features-section{
+    background:
+    radial-gradient(circle at 10% 20%,rgba(37,99,235,.2),transparent 30%),
+    radial-gradient(circle at 90% 80%,rgba(124,58,237,.2),transparent 35%),
+    #0f172a;
+    color:white;
+}
+
+.dark-heading h2{
+    color:white;
+}
+
+.dark-heading p{
+    color:#94a3b8;
+}
+
+.dark-heading .label{
+    color:#60a5fa;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.feature{
+    min-height:250px;
+    padding:27px;
+    border-radius:21px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.3s;
+}
+
+.feature:hover{
+    transform:translateY(-6px);
+    background:rgba(255,255,255,.1);
+}
+
+.feature-icon{
+    width:50px;
+    height:50px;
+    display:grid;
+    place-items:center;
+    border-radius:15px;
+    margin-bottom:22px;
+    color:white;
+    font-size:20px;
+}
+
+.blue{background:#2563eb}
+.purple{background:#7c3aed}
+.cyan{background:#0891b2}
+.pink{background:#db2777}
+
+.feature h3{
+    margin-bottom:9px;
+}
+
+.feature p{
+    color:#94a3b8;
+    font-size:13px;
+}
+
+
+/* =========================
+   PRICING
+========================= */
+
+.center{
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.pricing{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(280px,430px));
+    justify-content:center;
+    gap:22px;
+}
+
+.price-card{
+    padding:35px;
+    position:relative;
+    border-radius:25px;
+    background:white;
+    border:1px solid #e5e7eb;
+    box-shadow:0 15px 40px rgba(15,23,42,.05);
+}
+
+.price-card.featured{
+    border:2px solid #6366f1;
+    box-shadow:0 25px 60px rgba(79,70,229,.15);
+}
+
+.popular{
+    position:absolute;
+    top:18px;
+    right:18px;
+    padding:7px 11px;
+    border-radius:50px;
+    color:white;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    font-size:9px;
+    font-weight:900;
+}
+
+.package{
+    color:#6366f1;
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.price-card h3{
+    font-size:27px;
+    margin-top:8px;
+}
+
+.price-card > p{
+    color:#64748b;
+    font-size:13px;
+}
+
+.price{
+    font-size:48px;
+    font-weight:900;
+    margin:25px 0 15px;
+}
+
+.price small{
+    font-size:11px;
+    color:#94a3b8;
+    font-weight:500;
+}
+
+.price-card hr{
+    border:none;
+    height:1px;
+    background:#e5e7eb;
+}
+
+.price-card ul{
+    list-style:none;
+    margin:20px 0 25px;
+}
+
+.price-card li{
+    padding:7px 0;
+    color:#64748b;
+    font-size:14px;
+}
+
+.full{
+    width:100%;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    margin:0 5%;
+    padding:90px 8%;
+    border-radius:35px;
+    color:white;
+
+    background:
+    radial-gradient(circle at 85% 20%,rgba(255,255,255,.18),transparent 30%),
+    linear-gradient(135deg,#2563eb,#4f46e5,#7c3aed);
+}
+
+.cta h2{
+    max-width:700px;
+}
+
+.cta p{
+    color:#dbeafe;
+    max-width:600px;
+    margin-bottom:25px;
+}
+
+.white{
+    color:#2563eb;
+    background:white;
+}
+
+
+/* =========================
+   ORDER
+========================= */
+
+.order{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:60px;
+    align-items:start;
+}
+
+.order-list{
+    display:grid;
+    gap:10px;
+    margin-top:25px;
+}
+
+.order-list span{
+    padding:11px 14px;
+    border-radius:11px;
+    color:#2563eb;
+    background:#eff6ff;
+    font-size:13px;
+    font-weight:700;
+}
+
+
+/* GOOGLE FORM BUTTON */
+
+.order-box{
+    padding:40px;
+    border-radius:25px;
+    background:white;
+    border:1px solid #e5e7eb;
+    box-shadow:0 20px 60px rgba(15,23,42,.08);
+}
+
+.order-box h3{
+    font-size:27px;
+    margin-bottom:10px;
+}
+
+.order-box p{
+    margin-bottom:25px;
+}
+
+.order-box .button{
+    width:100%;
+}
+
+.form-note{
+    display:block;
+    text-align:center;
+    color:#94a3b8;
+    font-size:10px;
+    margin-top:12px;
+}
+
+
+/* =========================
+   FAQ
+========================= */
+
+.faq{
+    max-width:950px;
+}
+
+.faq-list{
+    display:grid;
+    gap:10px;
+}
+
+.faq-item{
+    width:100%;
+    padding:20px;
+    text-align:left;
+    position:relative;
+    border:1px solid #e5e7eb;
+    border-radius:15px;
+    background:white;
+    cursor:pointer;
+}
+
+.faq-item span{
+    font-weight:800;
+    padding-right:30px;
+}
+
+.faq-item b{
+    position:absolute;
+    right:20px;
+    top:15px;
+    color:#6366f1;
+    font-size:22px;
+}
+
+.faq-item p{
+    display:none;
+    color:#64748b;
+    font-size:13px;
+    margin-top:13px;
+    padding-right:25px;
+}
+
+.faq-item.open p{
+    display:block;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:50px 8% 25px;
+    background:#0b1120;
+    color:white;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.footer-text{
+    color:#64748b;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.footer-links{
+    display:flex;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.footer-links a{
+    color:#94a3b8;
+    font-size:12px;
+}
+
+.copyright{
+    grid-column:1/-1;
+    padding-top:23px;
+    border-top:1px solid #1e293b;
+    color:#64748b;
+    font-size:10px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media(max-width:850px){
+
+    .menu-button{
+        display:block;
+    }
+
+    .navigation{
+        display:none;
+        position:absolute;
+        top:75px;
+        left:0;
+        right:0;
+        padding:18px 5%;
+        background:white;
+        flex-direction:column;
+        align-items:stretch;
+        gap:4px;
+        border-bottom:1px solid #e5e7eb;
+    }
+
+    .navigation.show{
+        display:flex;
+    }
+
+    .navigation a{
+        padding:12px;
+    }
+
+    .nav-button{
+        text-align:center;
+    }
+
+    .hero{
+        grid-template-columns:1fr;
+        text-align:center;
+        padding:70px 6%;
+    }
+
+    .hero-content{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .hero h1{
+        font-size:clamp(50px,13vw,75px);
+    }
+
+    .hero-text{
+        font-size:16px;
+    }
+
+    .checks{
+        justify-content:center;
+    }
+
+    .steps,
+    .features,
+    .pricing,
+    .order{
+        grid-template-columns:1fr;
+    }
+
+    .pricing{
+        max-width:500px;
+        margin:auto;
+    }
+
+    footer{
+        grid-template-columns:1fr;
+    }
+
+    .footer-links{
+        justify-content:flex-start;
+    }
+
+    .copyright{
+        grid-column:auto;
+    }
+}
+
+
+/* =========================
+   PHONE
+========================= */
+
+@media(max-width:480px){
+
+    .navbar{
+        padding:0 5%;
+    }
+
+    .hero{
+        padding:60px 5%;
+    }
+
+    .hero h1{
+        font-size:51px;
+        letter-spacing:-3px;
+    }
+
+    .buttons{
+        width:100%;
+        flex-direction:column;
+    }
+
+    .buttons .button{
+        width:100%;
+    }
+
+    .checks{
+        flex-direction:column;
+        gap:7px;
+    }
+
+    .card-area{
+        min-height:350px;
+    }
+
+    .nfc-card{
+        width:94%;
+        padding:23px;
+        border-radius:22px;
+    }
+
+    .glow{
+        width:290px;
+        height:290px;
+    }
+
+    .process{
+        gap:13px;
+    }
+
+    .line{
+        width:20px;
+    }
+
+    .section{
+        padding:80px 6%;
+    }
+
+    .cta{
+        padding:65px 7%;
+        border-radius:25px;
+    }
+
+    .order-box{
+        padding:25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<header class="navbar">
+
+    <a href="#home" class="logo">
+        SmartTap <span>PH</span>
+    </a>
+
+    <button class="menu-button" onclick="toggleMenu()">
+        ☰
+    </button>
+
+    <nav class="navigation" id="navigation">
+
+        <a href="#home">Home</a>
+
+        <a href="#how">How It Works</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#pricing">Pricing</a>
+
+        <a href="#faq">FAQ</a>
+
+        <a href="#order" class="nav-button">
+            Get Started
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            <span class="badge-dot"></span>
+            SMART NFC BUSINESS CARD
+        </div>
+
+        <h1>
+            Your business.
+            <span>One simple tap.</span>
+        </h1>
+
+        <p class="hero-text">
+            SmartTap PH makes networking easier by
+            connecting your physical NFC card to your
+            digital world.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#order" class="button primary">
+                Get Your SmartTap
+            </a>
+
+            <a href="#how" class="button secondary">
+                See How It Works
+            </a>
+
+        </div>
+
+        <div class="checks">
+
+            <span>✓ No app required</span>
+
+            <span>✓ Easy to share</span>
+
+            <span>✓ Professional</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card-area">
+
+        <div class="glow"></div>
+
+        <div class="floating one">
+            NFC
+        </div>
+
+        <div class="floating two">
+            1 TAP
+        </div>
+
+        <div class="nfc-card">
+
+            <div class="card-top">
+
+                <strong>SMARTTAP</strong>
+
+                <span>PH</span>
+
+            </div>
+
+
+            <div class="card-middle">
+
+                <div class="waves">
+                    ))))
+                </div>
+
+                <small>
+                    TAP TO CONNECT
+                </small>
+
+            </div>
+
+
+            <div class="card-bottom">
+
+                <div>
+
+                    <strong>
+                        SMARTTAP PH
+                    </strong>
+
+                    <small>
+                        1 tap. connect. grow.
+                    </small>
+
+                </div>
+
+                <div class="chip"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PROCESS
+========================= -->
+
+<section class="process">
+
+    <div class="process-item">
+        <strong>01</strong>
+        <span>Tap</span>
+    </div>
+
+    <i class="line"></i>
+
+    <div class="process-item">
+        <strong>02</strong>
+        <span>Connect</span>
+    </div>
+
+    <i class="line"></i>
+
+    <div class="process-item">
+        <strong>03</strong>
+        <span>Grow</span>
+    </div>
+
+</section>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<section class="section intro">
+
+    <div class="label">
+        SMARTER NETWORKING
+    </div>
+
+    <h2>
+        Stop handing out
+        ordinary cards.
+    </h2>
+
+    <p>
+        Give your customers and clients a faster way
+        to discover who you are, what you do, and how
+        they can connect with you.
+    </p>
+
+</section>
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<section class="section" id="how">
+
+    <div class="heading">
+
+        <div class="label">
+            HOW IT WORKS
+        </div>
+
+        <h2>
+            Simple from
+            start to finish.
+        </h2>
+
+        <p>
+            Three simple steps to turn a physical card
+            into a digital connection.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <article class="step">
+
+            <div class="number">
+                01
+            </div>
+
+            <div class="step-tag">
+                TAP
+            </div>
+
+            <h3>
+                Tap the Card
+            </h3>
+
+            <p>
+                Your customer taps their compatible
+                smartphone on your SmartTap card.
+            </p>
+
+        </article>
+
+
+        <article class="step">
+
+            <div class="number">
+                02
+            </div>
+
+            <div class="step-tag">
+                LINK
+            </div>
+
+            <h3>
+                Open Your Profile
+            </h3>
+
+            <p>
+                Your digital profile opens and gives
+                customers your important information.
+            </p>
+
+        </article>
+
+
+        <article class="step">
+
+            <div class="number">
+                03
+            </div>
+
+            <div class="step-tag">
+                GROW
+            </div>
+
+            <h3>
+                Build Connections
+            </h3>
+
+            <p>
+                Make it easier for people to contact,
+                follow, review, or discover your business.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features-section" id="features">
+
+    <div class="section">
+
+        <div class="heading dark-heading">
+
+            <div class="label">
+                WHY SMARTTAP
+            </div>
+
+            <h2>
+                More than
+                just a card.
+            </h2>
+
+            <p>
+                A physical card with a digital experience
+                designed around you.
+            </p>
+
+        </div>
+
+
+        <div class="features">
+
+            <article class="feature">
+
+                <div class="feature-icon blue">
+                    ⚡
+                </div>
+
+                <h3>
+                    Instant Sharing
+                </h3>
+
+                <p>
+                    Share your digital information
+                    with a simple tap.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon purple">
+                    ↻
+                </div>
+
+                <h3>
+                    Easy Updates
+                </h3>
+
+                <p>
+                    Update your digital information
+                    without replacing the card.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon cyan">
+                    ◉
+                </div>
+
+                <h3>
+                    Professional
+                </h3>
+
+                <p>
+                    Create a modern and memorable
+                    first impression.
+                </p>
+
+            </article>
+
+
+            <article class="feature">
+
+                <div class="feature-icon pink">
+                    ↗
+                </div>
+
+                <h3>
+                    Share More
+                </h3>
+
+                <p>
+                    Connect customers to your social
+                    media, website, reviews and contacts.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PRICING
+========================= -->
+
+<section class="section" id="pricing">
+
+    <div class="heading center">
+
+        <div class="label">
+            PRICING
+        </div>
+
+        <h2>
+            Choose your SmartTap.
+        </h2>
+
+        <p>
+            Choose the package that fits your needs.
+        </p>
+
+    </div>
+
+
+    <div class="pricing">
+
+        <article class="price-card">
+
+            <div class="package">
+                STARTER
+            </div>
+
+            <h3>
+                SmartTap Card
+            </h3>
+
+            <p>
+                A simple way to start networking digitally.
+            </p>
+
+            <div class="price">
+                ₱499
+                <small>one-time</small>
+            </div>
+
+            <hr>
+
+            <ul>
+
+                <li>✓ NFC Smart Card</li>
+
+                <li>✓ Digital Profile</li>
+
+                <li>✓ Mobile Friendly</li>
+
+                <li>✓ Basic Setup</li>
+
+            </ul>
+
+            <a href="#order" class="button primary full">
+                Choose Starter
+            </a>
+
+        </article>
+
+
+        <article class="price-card featured">
+
+            <div class="popular">
+                POPULAR
+            </div>
+
+            <div class="package">
+                PROFESSIONAL
+            </div>
+
+            <h3>
+                SmartTap Pro
+            </h3>
+
+            <p>
+                Built for professionals and growing businesses.
+            </p>
+
+            <div class="price">
+                ₱799
+                <small>one-time</small>
+            </div>
+
+            <hr>
+
+            <ul>
+
+                <li>✓ NFC Smart Card</li>
+
+                <li>✓ Digital Profile</li>
+
+                <li>✓ Custom Profile</li>
+
+                <li>✓ Business Setup</li>
+
+            </ul>
+
+            <a href="#order" class="button primary full">
+                Choose Pro
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CTA
+========================= -->
+
+<section class="cta">
+
+    <div class="label">
+        GET STARTED
+    </div>
+
+    <h2>
+        Make your next
+        connection count.
+    </h2>
+
+    <p>
+        Give people a faster and easier way to
+        connect with your business.
+    </p>
+
+    <a href="#order" class="button white">
+        Start Your Order
+    </a>
+
+</section>
+
+
+<!-- =========================
+     ORDER
+========================= -->
+
+<section class="section order" id="order">
+
+    <div>
+
+        <div class="label">
+            ORDER SMARTTAP
+        </div>
+
+        <h2>
+            Let's get your
+            card started.
+        </h2>
+
+        <p>
+            Ready to get your SmartTap card?
+            Fill out our quick order form and
+            we'll receive your details.
+        </p>
+
+        <div class="order-list">
+
+            <span>✓ NFC card</span>
+
+            <span>✓ Digital profile</span>
+
+            <span>✓ Business setup</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="order-box">
+
+        <h3>
+            Start Your Order
+        </h3>
+
+        <p>
+            Click the button below to open the
+            SmartTap PH order form.
+        </p>
+
+        <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfaPZ8snf5fuifPsEUrcxR3fHSj2A5AzZ9SjS0IvzdvNhW_Xw/viewform?usp=publish-editor"
+            target="_blank"
+            rel="noopener"
+            class="button primary">
+
+            Fill Out Order Form
+
+        </a>
+
+        <small class="form-note">
+            Your order information will be submitted
+            through Google Forms.
+        </small>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FAQ
+========================= -->
+
+<section class="section faq" id="faq">
+
+    <div class="heading center">
+
+        <div class="label">
+            FAQ
+        </div>
+
+        <h2>
+            Questions?
+            We've got answers.
+        </h2>
+
+    </div>
+
+
+    <div class="faq-list">
+
+        <button class="faq-item">
+
+            <span>
+                What is SmartTap PH?
+            </span>
+
+            <b>+</b>
+
+            <p>
+                SmartTap PH is a smart NFC business card
+                that connects people to your digital information.
+            </p>
+
+        </button>
+
+
+        <button class="faq-item">
+
+            <span>
+                Does it require an app?
+            </span>
+
+            <b>+</b>
+
+            <p>
+                No dedicated app is required for customers
+                to access the linked digital profile.
+            </p>
+
+        </button>
+
+
+        <button class="faq-item">
+
+            <span>
+                Can I update my information?
+            </span>
+
+            <b>+</b>
+
+            <p>
+                Your digital profile can be updated without
+                replacing the physical NFC card.
+            </p>
+
+        </button>
+
+
+        <button class="faq-item">
+
+            <span>
+                Who can use SmartTap?
+            </span>
+
+            <b>+</b>
+
+            <p>
+                Businesses, entrepreneurs, professionals,
+                creators and other users can use SmartTap.
+            </p>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+
+        <a href="#home" class="logo">
+            SmartTap <span>PH</span>
+        </a>
+
+        <p class="footer-text">
+            1 tap. connect. grow.
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="#home">Home</a>
+
+        <a href="#how">How It Works</a>
+
+        <a href="#features">Features</a>
+
+        <a href="#pricing">Pricing</a>
+
+        <a href="#faq">FAQ</a>
+
+    </div>
+
+
+    <div class="copyright">
+        © 2026 SmartTap PH. All rights reserved.
+    </div>
+
+</footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+/* MOBILE MENU */
+
+function toggleMenu(){
+
+    document
+    .getElementById("navigation")
+    .classList
+    .toggle("show");
+
+}
+
+
+/* CLOSE MENU */
+
+document
+.querySelectorAll(".navigation a")
+.forEach(function(link){
+
+    link.addEventListener("click",function(){
+
+        document
+        .getElementById("navigation")
+        .classList
+        .remove("show");
+
+    });
+
+});
+
+
+/* FAQ */
+
+document
+.querySelectorAll(".faq-item")
+.forEach(function(item){
+
+    item.addEventListener("click",function(){
+
+        item.classList.toggle("open");
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
